@@ -22,12 +22,16 @@ def process_pdf():
     if file.filename == '':
         return jsonify({"error": "No selected file"}), 400
 
+    # Obtener el nombre base y la extensión del archivo
+    filename_without_ext = os.path.splitext(file.filename)[0]
+    output_filename = f"{filename_without_ext}_ocr.pdf"
+
     # Guardar el archivo temporalmente
     temp_file_path = os.path.join(TEMP_DIR, file.filename)
     file.save(temp_file_path)
 
     # Ruta del archivo de salida
-    output_file_path = os.path.join(TEMP_DIR, f"ocr_{file.filename}")
+    output_file_path = os.path.join(TEMP_DIR, output_filename)
 
     try:
         # Ejecutar el comando ocrmypdf
