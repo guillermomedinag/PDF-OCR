@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { Upload, FileText } from "lucide-react";
 import { useState } from "react";
+import { saveAs } from 'file-saver';
 
 const Index = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -33,14 +34,25 @@ const Index = () => {
     if (!selectedFile) return;
 
     setIsProcessing(true);
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
     try {
-      // Aquí iría la llamada al backend de Python
-      // Por ahora simulamos un delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await fetch('http://localhost:5000/process-pdf', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en el procesamiento del PDF');
+      }
+
+      const blob = await response.blob();
+      saveAs(blob, `OCR-${selectedFile.name}`);
       
       toast({
         title: "¡Procesamiento completado!",
-        description: "El texto ha sido extraído exitosamente",
+        description: "El PDF con OCR ha sido generado exitosamente",
       });
     } catch (error) {
       toast({
@@ -48,6 +60,7 @@ const Index = () => {
         title: "Error",
         description: "Hubo un error al procesar el documento",
       });
+      console.error('Error:', error);
     } finally {
       setIsProcessing(false);
     }
