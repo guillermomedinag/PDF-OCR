@@ -36,3 +36,7 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 pdfvenv/* 
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
