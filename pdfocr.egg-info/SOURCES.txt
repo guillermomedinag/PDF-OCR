@@ -1,0 +1,8 @@
+README.md
+setup.py
+pdfocr.egg-info/PKG-INFO
+pdfocr.egg-info/SOURCES.txt
+pdfocr.egg-info/dependency_links.txt
+pdfocr.egg-info/entry_points.txt
+pdfocr.egg-info/requires.txt
+pdfocr.egg-info/top_level.txt
