@@ -14,7 +14,7 @@ setup(
             'pdfocr=start:main'
         ]
     },
-    author='Your Name',
+    author='guimed',
     description='PDF OCR Processing Application',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
