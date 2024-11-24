@@ -18,13 +18,13 @@ const Index = () => {
         setSelectedFile(file);
         toast({
           title: "Archivo cargado",
-          description: `${file.name} ha sido seleccionado`,
+          description: `${file.name} ha sido seleccionado`
         });
       } else {
         toast({
           variant: "destructive",
           title: "Error",
-          description: "Por favor selecciona un archivo PDF",
+          description: "Por favor selecciona un archivo PDF"
         });
       }
     }
@@ -40,7 +40,7 @@ const Index = () => {
     try {
       const response = await fetch('http://localhost:5000/process-pdf', {
         method: 'POST',
-        body: formData,
+        body: formData
       });
 
       if (!response.ok) {
@@ -50,7 +50,6 @@ const Index = () => {
           statusText: response.statusText,
           errorMessage: errorText
         });
-        
         throw new Error(`Error processing PDF: ${errorText || response.statusText}`);
       }
 
@@ -59,14 +58,14 @@ const Index = () => {
       
       toast({
         title: "¡Procesamiento completado!",
-        description: "El PDF con OCR ha sido generado exitosamente",
+        description: "El PDF con OCR ha sido generado exitosamente"
       });
     } catch (error) {
       console.error('Full Error Details:', error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: error instanceof Error ? error.message : "Hubo un error al procesar el documento",
+        description: error instanceof Error ? error.message : "Hubo un error al procesar el documento"
       });
     } finally {
       setIsProcessing(false);
