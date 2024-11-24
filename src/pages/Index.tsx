@@ -43,7 +43,6 @@ const Index = () => {
         body: formData,
       });
 
-      // Log detailed error information
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Server Error Response:', {
@@ -77,7 +76,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-4 sm:p-8">
       <div className="max-w-2xl mx-auto">
-        <Card className="shadow-lg">
+        <Card>
           <CardHeader>
             <CardTitle className="text-2xl text-center">OCR de Documentos PDF</CardTitle>
           </CardHeader>
